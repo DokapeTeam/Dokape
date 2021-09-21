@@ -27,9 +27,12 @@ object AndroidLibraries {
     const val ActivityCompose = "androidx.activity:activity-compose:${AndroidVersions.ActivityCompose}"
 }
 
-object AndroidTest {
+object AndroidTestLibraries {
     const val ComposeUIJUnit4 =
         "androidx.compose.ui:ui-test-junit4:${AndroidVersions.ComposeVersion}"
+}
+
+object TestLibraries {
     const val jUnit4 = "junit:junit:${AndroidVersions.JUnit4}"
 }
 
@@ -39,4 +42,10 @@ object AnnotationProcessor {
 
 object iOSLibraries {
 
+}
+
+object BackendLibraries {
+    const val KtorCore = "io.ktor:ktor-server-core:${BackendVersions.KtorCore}"
+    const val KtorNettyEngine = "io.ktor:ktor-server-netty:${BackendVersions.KtorCore}"
+    const val LogBack = "ch.qos.logback:logback-classic:${BackendVersions.Logback}"
 }

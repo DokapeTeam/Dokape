@@ -8,12 +8,10 @@ buildscript {
     dependencies {
         classpath(ProjectPlugins.AndroidGradlePlugin)
         classpath(ProjectPlugins.KotlinGradlePlugin)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
     }
 }
 
 group = Configs.GroupId
-version = Configs.VersionName
 
 allprojects {
     repositories {
@@ -23,6 +21,11 @@ allprojects {
     }
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers")
+        maven(url = "https://jitpack.io")
+    }
 }

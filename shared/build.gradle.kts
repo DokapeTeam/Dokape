@@ -1,15 +1,20 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
+    kotlin(Plugins.Multiplatform)
+    kotlin(iOSPlugins.NativeCocoapods)
+    id(AndroidPlugins.AndroidLibrary)
 }
 
-version = "1.0"
+version = "0.1.0-dev01"
 
 kotlin {
     android()
+    jvm()
+    js(IR) {
+        useCommonJs()
+        browser()
+    }
 
     val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
         System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
@@ -26,7 +31,7 @@ kotlin {
         podfile = project.file("../ios/Podfile")
 
         framework {
-            baseName = "shared"
+            baseName = Modules.SharedModule
         }
     }
     
@@ -42,11 +47,18 @@ kotlin {
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
+                implementation(TestLibraries.jUnit4)
             }
         }
         val iosMain by getting
         val iosTest by getting
+        val jvmMain by getting {
+            dependencies {
+                implementation(kotlin("test-junit"))
+                implementation(TestLibraries.jUnit4)
+            }
+        }
+        val jsMain by getting
     }
 }
 
@@ -57,4 +69,10 @@ android {
         minSdk = AndroidConfigs.MinSdkVersion
         targetSdk = AndroidConfigs.TargetSdkVersion
     }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.freeCompilerArgs =
+        kotlinOptions.freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
 }
