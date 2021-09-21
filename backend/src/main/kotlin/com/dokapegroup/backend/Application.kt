@@ -1,5 +1,6 @@
 package com.dokapegroup.backend
 
+import com.dokapegroup.dokape.Platform
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -10,7 +11,7 @@ fun main() {
     embeddedServer(Netty, port = 8080) {
         routing {
             get("/") {
-                call.respondText("Hello, world!")
+                call.respondText(Platform().platform)
             }
         }
     }.start(wait = true)

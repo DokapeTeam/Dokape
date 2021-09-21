@@ -1,17 +1,34 @@
 plugins {
+    application
     kotlin("jvm")
 }
 
-group = "com.dokapegroup"
-version = "1.0-SNAPSHOT"
+group = Configs.GroupId
+version = "0.1.0-dev01"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation(project(Modules.SharedModule))
     implementation(kotlin("stdlib"))
-    implementation("io.ktor:ktor-server-core:1.6.3")
-    implementation("io.ktor:ktor-server-netty:1.6.3")
-    implementation("ch.qos.logback:logback-classic:1.2.5")
+    implementation(kotlin("test"))
+    implementation(BackendLibraries.KtorCore)
+    implementation(BackendLibraries.KtorNettyEngine)
+    implementation(BackendLibraries.LogBack)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.freeCompilerArgs =
+        kotlinOptions.freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+}
+
+sourceSets.all {
+    java.srcDir("src/$name/kotlin")
+}
+
+application {
+    mainClass.set("com.dokapegroup.backend.ApplicationKt")
 }

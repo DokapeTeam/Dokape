@@ -5,7 +5,6 @@ plugins {
 }
 
 group = Configs.GroupId
-version = Configs.VersionName
 
 dependencies {
     implementation(project(Modules.SharedModule))
@@ -25,7 +24,7 @@ dependencies {
     implementation(AndroidLibraries.ComposeLiveData)
 
     // UI Tests
-    androidTestImplementation(AndroidTest.ComposeUIJUnit4)
+    androidTestImplementation(AndroidTestLibraries.ComposeUIJUnit4)
 }
 
 android {
@@ -35,13 +34,17 @@ android {
         applicationId = Configs.ApplicationId
         minSdk = AndroidConfigs.MinSdkVersion
         targetSdk = AndroidConfigs.TargetSdkVersion
-        versionCode = AndroidConfigs.VersionCode
-        versionName = Configs.VersionName
+        versionCode = AndroidConfigs.ReleaseVersionCode
+        versionName = AndroidConfigs.ReleaseVersionName
     }
 
     buildTypes {
         getByName(AndroidBuildTypes.Release) {
             isMinifyEnabled = false
+        }
+        getByName(AndroidBuildTypes.Debug) {
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev${AndroidConfigs.DebugVersionCode.toString().padStart(2, '0')}"
         }
     }
 
@@ -56,9 +59,27 @@ android {
 
     kotlinOptions {
         jvmTarget = "11"
+        freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
     }
 
     composeOptions {
         kotlinCompilerExtensionVersion = AndroidVersions.ComposeVersion
+    }
+
+    sourceSets.all {
+        kotlin.srcDir("src/$name/kotlin")
+    }
+
+    applicationVariants.all {
+        outputs.forEach {
+            val output = (it as com.android.build.gradle.internal.api.ApkVariantOutputImpl)
+            if (output.name == AndroidBuildTypes.Debug) {
+                output.versionCodeOverride = AndroidConfigs.DebugVersionCode
+                output.versionNameOverride = AndroidConfigs.DebugVersionName
+            } else {
+                output.versionCodeOverride = AndroidConfigs.ReleaseVersionCode
+                output.versionNameOverride = AndroidConfigs.ReleaseVersionName
+            }
+        }
     }
 }

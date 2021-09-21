@@ -1,7 +1,7 @@
 
 object Plugins {
     const val Multiplatform = "multiplatform"
-    const val AndroidLibrary = "com.android.library"
+    const val JetBrainsCompose = "org.jetbrains.compose"
 }
 
 object ProjectPlugins {
@@ -15,6 +15,9 @@ object AndroidPlugins {
     const val AndroidApplication = "com.android.application"
     const val KotlinAndroid = "android"
     const val KotlinKapt = "kapt"
+    const val AndroidLibrary = "com.android.library"
 }
 
-object iOSPlugins {}
+object iOSPlugins {
+    const val NativeCocoapods = "native.cocoapods"
+}

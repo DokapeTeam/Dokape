@@ -1,15 +1,15 @@
 {
   "name": "shared",
-  "version": "1.0",
+  "version": "0.1.0-dev01",
   "homepage": "Link to the Shared Module homepage",
   "source": {
     "git": "Not Published",
-    "tag": "Cocoapods/shared/1.0"
+    "tag": "Cocoapods/shared/0.1.0-dev01"
   },
   "authors": "",
   "license": "",
   "summary": "Some description for the Shared Module",
-  "vendored_frameworks": "build/cocoapods/framework/shared.framework",
+  "vendored_frameworks": "build/cocoapods/framework/:shared.framework",
   "libraries": "c++",
   "module_name": "shared_umbrella",
   "platforms": {
