@@ -1,1 +1,1 @@
-./gradlew :web:jsBrowserDevelopmentRun
+./gradlew :web:jsBrowserDevelopmentRun --continuous
