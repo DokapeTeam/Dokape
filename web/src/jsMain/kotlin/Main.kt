@@ -18,6 +18,7 @@ fun Body() {
     var counter by remember { mutableStateOf(0) }
     Div {
         Text("Clicked: $counter")
+        Text("Huhu")
     }
     Button(
         attrs = {
@@ -27,8 +28,5 @@ fun Body() {
         }
     ) {
         Text("Click")
-    }
-    Button(onClick = {}) {
-        Text("Test")
     }
 }
