@@ -12,7 +12,7 @@ version = "0.1.0-dev01"
 
 kotlin {
     val isOSX =
-        org.gradle.internal.os.OperatingSystem.current() == org.gradle.internal.os.OperatingSystem.MAC_OS
+        org.gradle.internal.os.OperatingSystem.current().isMacOsX
     android()
     jvm()
     js(IR) {
