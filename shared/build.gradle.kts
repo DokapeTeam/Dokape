@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin(Plugins.Multiplatform)
-    if (org.gradle.internal.os.OperatingSystem.current() == org.gradle.internal.os.OperatingSystem.MAC_OS) {
+    if (org.gradle.internal.os.OperatingSystem.current().isMacOsX) {
         kotlin(iOSPlugins.NativeCocoapods)
     }
     id(AndroidPlugins.AndroidLibrary)
