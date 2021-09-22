@@ -4,6 +4,8 @@ plugins {
     kotlin(Plugins.Multiplatform)
     if (org.gradle.internal.os.OperatingSystem.current().isMacOsX) {
         kotlin(iOSPlugins.NativeCocoapods)
+    } else {
+        kotlin("jvm")
     }
     id(AndroidPlugins.AndroidLibrary)
 }
