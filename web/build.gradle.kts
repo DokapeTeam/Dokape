@@ -25,6 +25,7 @@ kotlin {
                 implementation(compose.web.core)
                 implementation(compose.web.widgets)
                 implementation(compose.runtime)
+                implementation(npm("bootstrap", "5.1.1"))
 
                 implementation(project(Modules.SharedModule))
             }

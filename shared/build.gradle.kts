@@ -2,13 +2,17 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin(Plugins.Multiplatform)
-    kotlin(iOSPlugins.NativeCocoapods)
+    if (org.gradle.internal.os.OperatingSystem.current() == org.gradle.internal.os.OperatingSystem.MAC_OS) {
+        kotlin(iOSPlugins.NativeCocoapods)
+    }
     id(AndroidPlugins.AndroidLibrary)
 }
 
 version = "0.1.0-dev01"
 
 kotlin {
+    val isOSX =
+        org.gradle.internal.os.OperatingSystem.current() == org.gradle.internal.os.OperatingSystem.MAC_OS
     android()
     jvm()
     js(IR) {
@@ -16,25 +20,27 @@ kotlin {
         browser()
     }
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
-        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
-        else -> ::iosX64
-    }
+    if (isOSX) {
+        val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
+            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
+            else -> ::iosX64
+        }
 
-    iosTarget("ios") {}
+        iosTarget("ios") {}
 
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../ios/Podfile")
+        cocoapods {
+            summary = "Some description for the Shared Module"
+            homepage = "Link to the Shared Module homepage"
+            ios.deploymentTarget = "14.1"
+            podfile = project.file("../ios/Podfile")
 
-        framework {
-            baseName = Modules.SharedModule
+            framework {
+                baseName = Modules.SharedModule
+            }
         }
     }
-    
+
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
@@ -50,8 +56,10 @@ kotlin {
                 implementation(TestLibraries.jUnit4)
             }
         }
-        val iosMain by getting
-        val iosTest by getting
+        if (isOSX) {
+            val iosMain by getting
+            val iosTest by getting
+        }
         val jvmMain by getting {
             dependencies {
                 implementation(kotlin("test-junit"))

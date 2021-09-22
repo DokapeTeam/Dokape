@@ -1,4 +1,5 @@
 import androidx.compose.runtime.*
+import components.Card
 import org.jetbrains.compose.common.material.Button
 import org.jetbrains.compose.common.ui.ExperimentalComposeWebWidgetsApi
 import org.jetbrains.compose.web.dom.Button
@@ -12,21 +13,7 @@ fun main() {
     }
 }
 
-@OptIn(ExperimentalComposeWebWidgetsApi::class)
 @Composable
 fun Body() {
-    var counter by remember { mutableStateOf(0) }
-    Div {
-        Text("Clicked: $counter")
-        Text("Huhu")
-    }
-    Button(
-        attrs = {
-            onClick {
-                counter++
-            }
-        }
-    ) {
-        Text("Click")
-    }
+    Card()
 }
