@@ -17,6 +17,8 @@ object AndroidVersions {
     const val ActivityCompose = "1.4.0-alpha02"
 
     const val JUnit4 = "4.13"
+
+    const val firebaseBoM = "28.4.1"
 }
 object iOSVersions {
 

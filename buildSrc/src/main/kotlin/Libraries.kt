@@ -25,6 +25,11 @@ object AndroidLibraries {
     const val AndroidXCore = "androidx.core:core-ktx:${AndroidVersions.AndroidXCoreVersion}"
     const val Timber = "com.jakewharton.timber:timber:${AndroidVersions.TimberVersion}"
     const val ActivityCompose = "androidx.activity:activity-compose:${AndroidVersions.ActivityCompose}"
+
+    //Firebase
+    const val firebaseBoM = "com.google.firebase:firebase-bom:${AndroidVersions.firebaseBoM}"
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
+
 }
 
 object AndroidTestLibraries {
