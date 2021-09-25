@@ -2,7 +2,11 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin(Plugins.Multiplatform)
-    kotlin(iOSPlugins.NativeCocoapods)
+    if (org.gradle.internal.os.OperatingSystem.current().isMacOsX) {
+        kotlin(iOSPlugins.NativeCocoapods)
+    } else {
+        kotlin("jvm")
+    }
     id(AndroidPlugins.AndroidLibrary)
 }
 
@@ -18,22 +22,24 @@ kotlin {
         browser()
     }
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
-        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
-        else -> ::iosX64
-    }
+    if (isOSX) {
+        val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
+            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
+            else -> ::iosX64
+        }
 
-    if (isOSX) iosTarget("ios") {}
+        iosTarget("ios") {}
 
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../ios/Podfile")
+        cocoapods {
+            summary = "Some description for the Shared Module"
+            homepage = "Link to the Shared Module homepage"
+            ios.deploymentTarget = "14.1"
+            podfile = project.file("../ios/Podfile")
 
-        framework {
-            baseName = Modules.SharedModule
+            framework {
+                baseName = Modules.SharedModule
+            }
         }
     }
 

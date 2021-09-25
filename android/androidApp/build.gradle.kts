@@ -25,10 +25,6 @@ dependencies {
 
     // UI Tests
     androidTestImplementation(AndroidTestLibraries.ComposeUIJUnit4)
-
-    //Firebase
-    implementation(platform(AndroidLibraries.firebaseBoM))
-    implementation(AndroidLibraries.firebaseAnalytics)
 }
 
 android {
