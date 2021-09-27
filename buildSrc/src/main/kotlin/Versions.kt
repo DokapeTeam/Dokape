@@ -2,6 +2,9 @@ object Versions {
     const val KotlinVersion = "1.5.30"
     const val CoroutinesVersion = "1.5.2"
     const val JetBrainsCompose = "1.0.0-alpha4-build348"
+    const val SerializationJsonVersion = "1.3.0"
+    const val SQLDelight = "1.5.0"
+    const val Koin = "3.1.2"
 }
 
 object AndroidVersions {
@@ -18,11 +21,11 @@ object AndroidVersions {
 
     const val JUnit4 = "4.13"
 }
-object iOSVersions {
 
-}
+object IOSVersions
 
 object BackendVersions {
-    const val KtorCore = "1.6.3"
-    const val Logback = "1.2.5"
+    const val SpringVersion = "2.5.5"
+    const val SpringDependencyManagement = "1.0.11.RELEASE"
+    const val SpringFox = "3.0.0"
 }

@@ -25,6 +25,11 @@ dependencies {
 
     // UI Tests
     androidTestImplementation(AndroidTestLibraries.ComposeUIJUnit4)
+
+    // Koin
+    implementation(AndroidLibraries.KoinAndroid)
+    implementation(AndroidLibraries.KoinWorkManager)
+    implementation(AndroidLibraries.KoinJetpackCompose)
 }
 
 android {

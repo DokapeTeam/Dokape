@@ -2,8 +2,10 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin(Plugins.Multiplatform)
-    kotlin(iOSPlugins.NativeCocoapods)
+    kotlin(IOSPlugins.NativeCocoapods)
     id(AndroidPlugins.AndroidLibrary)
+    kotlin(Plugins.Serialization) version Versions.KotlinVersion
+    id(Plugins.SQLDelight)
 }
 
 version = "0.1.0-dev01"
@@ -38,22 +40,43 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(Libraries.CoroutinesCore)
+                implementation(Libraries.SerializationJson)
+                implementation(Libraries.Koin)
+                implementation(TestLibraries.KoinTest)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(AndroidLibraries.AndroidXCore)
+                implementation(AndroidLibraries.AppCompat)
+                implementation(AndroidLibraries.CoroutinesAndroid)
+                implementation(AndroidLibraries.Timber)
+                implementation(Libraries.SerializationJson)
+                implementation(AndroidLibraries.SQLDelightAndroid)
+            }
+        }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation(TestLibraries.jUnit4)
+                implementation(Libraries.CoroutinesTest)
             }
         }
         if (isOSX) {
-            val iosMain by getting
+            val iosMain by getting {
+                dependencies {
+                    implementation(IOSLibraries.SQLDelightNative)
+                }
+            }
             val iosTest by getting
         }
         val jvmMain by getting {
@@ -79,4 +102,10 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
     kotlinOptions.freeCompilerArgs =
         kotlinOptions.freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+}
+
+sqldelight {
+    database(Configs.ApplicationName) { // This will be the name of the generated database class.
+        packageName = Configs.GroupId
+    }
 }

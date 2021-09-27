@@ -1,1 +1,1 @@
-./gradlew.bat :backend:run
+./gradlew.bat :backend:bootRun

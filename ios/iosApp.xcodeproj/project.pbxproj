@@ -10,6 +10,8 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		AE387F75DBE19BD8A7D56DC6 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B0FE7651933F8D6DF89696 /* Pods_iosApp.framework */; };
+		BBEB478526FCE4150080D4C1 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEB478426FCE4150080D4C1 /* LoginScreen.swift */; };
+		BBEB478826FCE65F0080D4C1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEB478726FCE65F0080D4C1 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6C7BDCA11D97C0B84B2B7ED /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BBEB478426FCE4150080D4C1 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		BBEB478726FCE65F0080D4C1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +52,6 @@
 				B6C7BDCA11D97C0B84B2B7ED /* Pods-iosApp.debug.xcconfig */,
 				01EF855746DF180CAD9C5CAB /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -73,11 +76,45 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				BBEB478626FCE64B0080D4C1 /* Colors */,
+				BBEB478326FCE38E0080D4C1 /* Authentication */,
+				BBEB478226FCE37D0080D4C1 /* Home */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 			);
 			path = iosApp;
+			sourceTree = "<group>";
+		};
+		BB1D02F626FDE807006B8148 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BBEB478426FCE4150080D4C1 /* LoginScreen.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		BBEB478226FCE37D0080D4C1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BBEB478326FCE38E0080D4C1 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				BB1D02F626FDE807006B8148 /* Login */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		BBEB478626FCE64B0080D4C1 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				BBEB478726FCE65F0080D4C1 /* Colors.swift */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,7 +212,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				BBEB478826FCE65F0080D4C1 /* Colors.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				BBEB478526FCE4150080D4C1 /* LoginScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

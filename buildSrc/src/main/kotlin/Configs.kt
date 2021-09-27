@@ -1,6 +1,7 @@
 object Configs {
     const val GroupId = "com.dokapegroup"
     const val ApplicationId = "com.dokapegroup.dokape"
+    const val ApplicationName = "Dokape"
 }
 
 object AndroidConfigs {
