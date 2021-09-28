@@ -9,6 +9,7 @@ object ProjectPlugins {
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KotlinVersion}"
     const val AndroidGradlePlugin =
         "com.android.tools.build:gradle:${AndroidVersions.AndroidGradlePluginVersion}"
+    const val GoogleServicesPlugin = "com.google.gms:google-services:${Versions.GoggleService}"
 }
 
 object AndroidPlugins {

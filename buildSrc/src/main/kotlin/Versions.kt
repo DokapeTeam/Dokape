@@ -2,6 +2,7 @@ object Versions {
     const val KotlinVersion = "1.5.30"
     const val CoroutinesVersion = "1.5.2"
     const val JetBrainsCompose = "1.0.0-alpha4-build348"
+    const val GoggleService = "4.3.0"
 }
 
 object AndroidVersions {
@@ -18,7 +19,7 @@ object AndroidVersions {
 
     const val JUnit4 = "4.13"
 
-    const val firebaseBoM = "28.4.1"
+    const val FirebaseBoM = "28.4.1"
 }
 object iOSVersions {
 

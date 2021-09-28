@@ -27,8 +27,8 @@ object AndroidLibraries {
     const val ActivityCompose = "androidx.activity:activity-compose:${AndroidVersions.ActivityCompose}"
 
     //Firebase
-    const val firebaseBoM = "com.google.firebase:firebase-bom:${AndroidVersions.firebaseBoM}"
-    const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
+    const val FirebaseBoM = "com.google.firebase:firebase-bom:${AndroidVersions.FirebaseBoM}"
+    const val FirebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
 
 }
 
