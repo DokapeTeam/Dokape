@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+
+android {
+    compileSdk AndroidConfigs.CompileSdkVersion
+    buildToolsVersion AndroidVersions.BuildToolsVersion
+
+    defaultConfig {
+        minSdk AndroidConfigs.MinSdkVersion
+        targetSdk AndroidConfigs.TargetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+
+    packagingOptions {
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+        exclude("META-INF/LGPL2.1")
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/*.kotlin_module")
+    }
+}
+
+dependencies {
+    implementation AndroidLibraries.AndroidXCore
+    implementation AndroidLibraries.AppCompat
+    implementation Libraries.CoroutinesCore
+    implementation AndroidLibraries.CoroutinesAndroid
+    testImplementation Libraries.CoroutinesTest
+    implementation AndroidLibraries.Timber
+    testImplementation AndroidTestLibraries.jUnit4
+}
