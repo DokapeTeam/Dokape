@@ -7,6 +7,11 @@ object Libraries {
     const val SerializationJson =
         "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.SerializationJsonVersion}"
     const val Koin = "io.insert-koin:koin-core:${Versions.Koin}"
+    const val Kermit = "co.touchlab:kermit:${Versions.Kermit}"
+    const val KtorCore = "io.ktor:ktor-client-core:${Versions.Ktor}"
+    const val KtorCIO = "io.ktor:ktor-client-cio:${Versions.Ktor}"
+    const val KtorClientSerialization = "io.ktor:ktor-client-serialization:${Versions.Ktor}"
+    const val KtorClientLogging = "io.ktor:ktor-client-logging:${Versions.Ktor}"
 }
 
 object AndroidLibraries {
@@ -34,6 +39,7 @@ object AndroidLibraries {
     const val KoinAndroid = "io.insert-koin:koin-android:${Versions.Koin}"
     const val KoinWorkManager = "io.insert-koin:koin-androidx-workmanager:${Versions.Koin}"
     const val KoinJetpackCompose = "io.insert-koin:koin-androidx-compose:${Versions.Koin}"
+    const val KtorAndroid = "io.ktor:ktor-client-android:${Versions.Ktor}"
 }
 
 object AndroidTestLibraries {
@@ -51,6 +57,7 @@ object AnnotationProcessor
 
 object IOSLibraries {
     const val SQLDelightNative = "com.squareup.sqldelight:native-driver:${Versions.SQLDelight}"
+    const val KtorIOS = "io.ktor:ktor-client-ios:${Versions.Ktor}"
 }
 
 object BackendLibraries {

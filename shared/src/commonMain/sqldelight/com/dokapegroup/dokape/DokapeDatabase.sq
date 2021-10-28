@@ -1,0 +1,205 @@
+import com.dokapegroup.backend.models.domain.Gender;
+
+CREATE TABLE dbUser (
+    id INTEGER NOT NULL PRIMARY KEY,
+    username TEXT(14) NOT NULL UNIQUE,
+    hashedPassword TEXT NOT NULL,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    avatar TEXT NOT NULL,
+    latitude REAL,
+    longitude REAL,
+    gender TEXT AS Gender NOT NULL,
+    dateOfBirth INTEGER AS Int NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT(10),
+    createdAt INTEGER AS Int NOT NULL,
+    updatedAt INTEGER AS Int NOT NULL,
+    numberOfPosts INTEGER AS Int NOT NULL DEFAULT 0,
+    numberOfShorts INTEGER AS Int NOT NULL DEFAULT 0,
+    numberOfPetsAdopted INTEGER AS Int NOT NULL DEFAULT 0,
+    trustedOwner INTEGER AS Boolean NOT NULL,
+    shopId INTEGER DEFAULT NULL,
+    CONSTRAINT shopIdFk FOREIGN KEY (shopId) REFERENCES dbShop(id)
+);
+
+CREATE TABLE dbPet (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    age INTEGER AS Int NOT NULL CHECK (age IN (0, 1, 2, 3)),
+    description VARCHAR(2000) CHECK (length(description) >= 300),
+    height REAL NOT NULL,
+    weight REAL NOT NULL,
+    hairType TEXT NOT NULL,
+    health INTEGER AS Int CHECK (health IN (0, 1, 2, 3, 4)),
+    healthDescription VARCHAR(150),
+    gender TEXT AS Gender NOT NULL,
+    isAdopted INTEGER AS Boolean NOT NULL,
+    createdAt INTEGER AS Int NOT NULL,
+    updatedAt INTEGER AS Int NOT NULL,
+    tag TEXT,
+    speciesTypeId INTEGER NOT NULL,
+    userId INTEGER NOT NULL,
+    CONSTRAINT speciesTypeIdFk FOREIGN KEY (speciesTypeId) REFERENCES dbSpeciesType(id),
+    CONSTRAINT userIdPetFk FOREIGN KEY (userId) REFERENCES dbUser(id)
+);
+
+CREATE TABLE dbImage(
+    id INTEGER NOT NULL PRIMARY KEY,
+    imageUrl TEXT NOT NULL UNIQUE,
+    parentId INTEGER NOT NULL,
+    CONSTRAINT petImageFk FOREIGN KEY (parentId) REFERENCES dbPet(id),
+    CONSTRAINT productImageFk FOREIGN KEY (parentId) REFERENCES dbProduct(id),
+    CONSTRAINT postImageFk FOREIGN KEY (parentId) REFERENCES dbPost(id)
+);
+
+CREATE TABLE dbFurColor (
+    id INTEGER NOT NULL PRIMARY KEY,
+    color TEXT NOT NULL CHECK (length(color) <= 9),
+    name VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE dbSpecies (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    description VARCHAR(2000) CHECK (length(description) >= 200),
+    image TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE dbSpeciesType (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    speciesId INTEGER NOT NULL,
+    image TEXT NOT NULL UNIQUE,
+    FOREIGN KEY (speciesId) REFERENCES dbSpecies(id)
+);
+
+CREATE TABLE dbFavoritePet (
+    id INTEGER NOT NULL PRIMARY KEY,
+    userId INTEGER NOT NULL,
+    petId INTEGER NOT NULL,
+    FOREIGN KEY (userId) REFERENCES dbUser(id),
+    FOREIGN KEY (petId) REFERENCES dbPet(id)
+);
+
+CREATE TABLE dbContract (
+    id INTEGER NOT NULL PRIMARY KEY,
+    adoptUser INTEGER AS Int NOT NULL,
+    abandonUser INTEGER AS Int NOT NULL,
+    expired INTEGER AS Int NOT NULL,
+    createdAt INTEGER AS Int NOT NULL,
+    petId INTEGER NOT NULL,
+    success INTEGER AS Boolean NOT NULL,
+    CONSTRAINT abandonUserIdFk FOREIGN KEY (abandonUser) REFERENCES dbUser(id),
+    CONSTRAINT petIdContractFk FOREIGN KEY (petId) REFERENCES dbPet(id),
+    CONSTRAINT adoptUserIdFk FOREIGN KEY (adoptUser) REFERENCES dbUser(id)
+);
+
+CREATE TABLE dbShop (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(2000) CHECK (length(description) >= 300),
+    totalProducts INTEGER AS Int NOT NULL DEFAULT 0,
+    numberOfFollowers INTEGER AS Int NOT NULL DEFAULT 0,
+    userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES dbUser(id)
+);
+
+CREATE TABLE dbProduct (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(2000) CHECK (length(description) >= 300),
+    price REAL NOT NULL,
+    sold INTEGER AS Int NOT NULL DEFAULT 0,
+    inStock INTEGER AS Int NOT NULL,
+    isDraft INTEGER AS Boolean NOT NULL,
+    createdAt INTEGER AS Int NOT NULL,
+    updatedAt INTEGER AS Int NOT NULL,
+    shopId INTEGER NOT NULL,
+    FOREIGN KEY (shopId) REFERENCES dbShop(id)
+);
+
+CREATE TABLE dbCategory (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(50),
+    description VARCHAR(2000) CHECK (length(description) >= 300),
+    image TEXT NOT NULL
+);
+
+CREATE TABLE dbSubcategory (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(50),
+    description VARCHAR(2000) CHECK (length(description) >= 300),
+    image TEXT NOT NULL,
+    categoryId INTEGER NOT NULL,
+    FOREIGN KEY (categoryId) REFERENCES dbCategory(id)
+);
+
+CREATE TABLE dbSubcategoryProduct (
+    id INTEGER NOT NULL PRIMARY KEY,
+    productId INTEGER NOT NULL,
+    subcategoryId INTEGER NOT NULL,
+    FOREIGN KEY (productId) REFERENCES dbProduct(id),
+    FOREIGN KEY (subcategoryId) REFERENCES dbSubcategory(id)
+);
+
+CREATE TABLE dbDkpGroup (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name VARCHAR(50),
+    description VARCHAR(2000) CHECK (length(description) >= 300),
+    image TEXT NOT NULL,
+    rules VARCHAR(1000),
+    createdAt INTEGER AS Int NOT NULL,
+    updatedAt INTEGER AS Int NOT NULL
+);
+
+CREATE TABLE dbGroupMembership (
+    id INTEGER NOT NULL PRIMARY KEY,
+    userId INTEGER NOT NULL,
+    groupId INTEGER NOT NULL,
+    FOREIGN KEY (userId) REFERENCES dbUser(id),
+    FOREIGN KEY (groupId) REFERENCES dbDkpGroup(id)
+);
+
+CREATE TABLE dbShort (
+    id INTEGER NOT NULL PRIMARY KEY,
+    videoUrl TEXT NOT NULL,
+    reactionId INTEGER NOT NULL,
+    commentId INTEGER NOT NULL,
+    userId INTEGER NOT NULL,
+    FOREIGN KEY (userId) REFERENCES dbUser(id)
+);
+
+CREATE TABLE dbPost (
+    id INTEGER NOT NULL PRIMARY KEY,
+    title VARCHAR(50),
+    content VARCHAR(5000) CHECK (length(content) > 0),
+    reactionId INTEGER NOT NULL,
+    FOREIGN KEY (reactionId) REFERENCES dbReaction(id)
+);
+
+CREATE TABLE dbComment (
+    id INTEGER NOT NULL PRIMARY KEY,
+    comment VARCHAR(2000) CHECK (length(comment) > 0),
+    reactionId INTEGER NOT NULL,
+    parentId INTEGER NOT NULL,
+    child INTEGER AS Int,
+    FOREIGN KEY (reactionId) REFERENCES dbReaction(id),
+    CONSTRAINT commentShortIdFk FOREIGN KEY (parentId) REFERENCES dbShort(id),
+    CONSTRAINT commentPostIdFk FOREIGN KEY (parentId) REFERENCES dbPost(id)
+);
+
+CREATE TABLE dbReaction (
+    id INTEGER NOT NULL PRIMARY KEY,
+    like INTEGER AS Int NOT NULL DEFAULT 0,
+    love INTEGER AS Int NOT NULL DEFAULT 0,
+    paw INTEGER AS Int NOT NULL DEFAULT 0,
+    parentId INTEGER NOT NULL,
+    CONSTRAINT reactionShortCommentIdFk FOREIGN KEY (parentId) REFERENCES dbShort(id),
+    CONSTRAINT reactionPostIdFk FOREIGN KEY (parentId) REFERENCES dbPost(id)
+);
+
+userQuery:
+SELECT * FROM dbUser;
+
+petQuery:
+SELECT * FROM dbPet;

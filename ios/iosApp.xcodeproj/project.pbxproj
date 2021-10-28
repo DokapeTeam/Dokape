@@ -10,6 +10,7 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		AE387F75DBE19BD8A7D56DC6 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B0FE7651933F8D6DF89696 /* Pods_iosApp.framework */; };
+		BB70B546271DC46600C3A924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB70B545271DC46600C3A924 /* AppDelegate.swift */; };
 		BBEB478526FCE4150080D4C1 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEB478426FCE4150080D4C1 /* LoginScreen.swift */; };
 		BBEB478826FCE65F0080D4C1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEB478726FCE65F0080D4C1 /* Colors.swift */; };
 /* End PBXBuildFile section */
@@ -22,6 +23,7 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6C7BDCA11D97C0B84B2B7ED /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB70B545271DC46600C3A924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBEB478426FCE4150080D4C1 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		BBEB478726FCE65F0080D4C1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				BB70B545271DC46600C3A924 /* AppDelegate.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				BBEB478826FCE65F0080D4C1 /* Colors.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				BB70B546271DC46600C3A924 /* AppDelegate.swift in Sources */,
 				BBEB478526FCE4150080D4C1 /* LoginScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

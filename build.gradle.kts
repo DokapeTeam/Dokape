@@ -12,8 +12,6 @@ buildscript {
     }
 }
 
-group = Configs.GroupId
-
 allprojects {
     repositories {
         google()

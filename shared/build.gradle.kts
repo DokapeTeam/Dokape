@@ -6,9 +6,22 @@ plugins {
     id(AndroidPlugins.AndroidLibrary)
     kotlin(Plugins.Serialization) version Versions.KotlinVersion
     id(Plugins.SQLDelight)
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 version = "0.1.0-dev01"
+
+android {
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
+    }
+}
 
 kotlin {
     val isOSX =
@@ -42,26 +55,48 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(kotlin("stdlib-common"))
+
+                // Logger
+                api(Libraries.Kermit)
+
+                // Coroutines
                 implementation(Libraries.CoroutinesCore)
+
+                // Serialization
                 implementation(Libraries.SerializationJson)
-                implementation(Libraries.Koin)
-                implementation(TestLibraries.KoinTest)
+
+                // Koin for DI
+                api(Libraries.Koin)
+                api(TestLibraries.KoinTest)
+
+                implementation(Libraries.KtorCore)
+                implementation(Libraries.KtorClientSerialization)
+                implementation(Libraries.KtorClientLogging)
             }
         }
         val commonTest by getting {
             dependencies {
+                // Test libraries
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
         val androidMain by getting {
             dependencies {
+                // Core support libraries
                 implementation(AndroidLibraries.AndroidXCore)
                 implementation(AndroidLibraries.AppCompat)
                 implementation(AndroidLibraries.CoroutinesAndroid)
-                implementation(AndroidLibraries.Timber)
+
+                // Serialization Json JVM
                 implementation(Libraries.SerializationJson)
+
+                // SQLDelight android driver
                 implementation(AndroidLibraries.SQLDelightAndroid)
+
+                // Ktor Client
+                implementation(AndroidLibraries.KtorAndroid)
             }
         }
         val androidTest by getting {
@@ -79,13 +114,20 @@ kotlin {
             }
             val iosTest by getting
         }
-        val jvmMain by getting {
+        val jsMain by getting {
             dependencies {
-                implementation(kotlin("test-junit"))
-                implementation(TestLibraries.jUnit4)
+                implementation("com.squareup.sqldelight:sqljs-driver:${Versions.SQLDelight}")
             }
         }
-        val jsMain by getting
+    }
+
+    targets.all {
+        compilations.all {
+            kotlinOptions {
+                allWarningsAsErrors = true
+                freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xjsr305=strict")
+            }
+        }
     }
 }
 
@@ -100,12 +142,12 @@ android {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
-    kotlinOptions.freeCompilerArgs =
-        kotlinOptions.freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+    kotlinOptions.freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xjsr305=strict")
 }
 
 sqldelight {
-    database(Configs.ApplicationName) { // This will be the name of the generated database class.
+    database("DokapeDatabase") { // This will be the name of the generated database class.
         packageName = Configs.GroupId
+        dialect = "mysql"
     }
 }

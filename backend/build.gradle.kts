@@ -1,43 +1,52 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin(Plugins.Jpa) version Versions.KotlinVersion
-    id(Plugins.SpringBoot) version BackendVersions.SpringVersion
-    id(Plugins.SpringDependencyManagement) version BackendVersions.SpringDependencyManagement
-    kotlin(Plugins.Jvm)
-    kotlin(Plugins.Spring) version Versions.KotlinVersion
-    kotlin(Plugins.Serialization) version Versions.KotlinVersion
+    id("org.springframework.boot") version "2.5.6"
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    kotlin("jvm") version "1.5.31"
+    kotlin("plugin.spring") version "1.5.31"
+    kotlin("plugin.jpa") version "1.5.31"
+    kotlin("plugin.allopen") version "1.5.31"
 }
 
-group = Configs.GroupId
-version = "0.1.0-dev01"
+group = "com.dokapegroup"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(project(Modules.SharedModule))
-    implementation(kotlin("stdlib"))
-    implementation(kotlin("test"))
-    implementation(BackendLibraries.SpringBootStarter)
-    implementation(BackendLibraries.SpringBootStarterMustache)
-    implementation(BackendLibraries.SpringBootWeb)
-    implementation(Libraries.Reflect)
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.6")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.31")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31")
     runtimeOnly("com.h2database:h2:1.4.200")
-    runtimeOnly(BackendLibraries.SpringBootDevTools)
-    testImplementation(BackendLibraries.SpringBootTestStarter)
-    implementation(Libraries.SerializationJson)
-    implementation(BackendLibraries.SpringBootStarterParent)
-    implementation(BackendLibraries.SpringFoxSwagger2)
-    implementation(BackendLibraries.SpringFoxBootStarter)
-    implementation(BackendLibraries.SpringFoxSwaggerUi)
+    runtimeOnly("org.postgresql:postgresql:42.3.0")
+    implementation("org.springframework.boot:spring-boot-starter-web:2.5.6")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.6")
+    implementation("org.springframework.boot:spring-boot-starter-validation:2.5.6")
+    implementation("org.springframework.data:spring-data-keyvalue:2.5.6")
+    implementation("org.springframework.boot:spring-boot-starter-security:2.5.6")
+    implementation("org.springframework.security:spring-security-oauth2-resource-server:5.5.3")
+    implementation("org.springframework.security:spring-security-oauth2-jose:5.5.3")
+    implementation("org.springframework.security:spring-security-config:5.5.3")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
-    kotlinOptions.freeCompilerArgs =
-        listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xjsr305=strict")
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "11"
+    }
 }
 
-sourceSets.all {
-    java.srcDir("src/$name/kotlin")
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.Embeddable")
+    annotation("javax.persistence.MappedSuperclass")
 }

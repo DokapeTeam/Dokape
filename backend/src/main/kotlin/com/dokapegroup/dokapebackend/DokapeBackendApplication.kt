@@ -1,11 +1,11 @@
-package com.dokapegroup.backend
+package com.dokapegroup.dokapebackend
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class Application
+class DokapeBackendApplication
 
 fun main(args: Array<String>) {
-    runApplication<Application>(*args)
+    runApplication<DokapeBackendApplication>(*args)
 }
