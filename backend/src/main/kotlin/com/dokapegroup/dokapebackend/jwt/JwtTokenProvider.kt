@@ -8,7 +8,7 @@ import io.jsonwebtoken.MalformedJwtException
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.UnsupportedJwtException
 import org.springframework.stereotype.Component
-import java.util.Date
+import java.util.*
 
 private const val JWT_SECRET = "daylajwtsecretcuadokapegroupneeeee"
 private const val JWT_EXPIRATION = 604800000L

@@ -1,5 +1,6 @@
-package com.dokapegroup.dokapebackend.controllers
+package com.dokapegroup.dokapebackend.controllers.authentication
 
+import com.dokapegroup.dokapebackend.Roles
 import com.dokapegroup.dokapebackend.jwt.JwtTokenProvider
 import com.dokapegroup.dokapebackend.models.DBUser
 import com.dokapegroup.dokapebackend.models.Gender
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -35,6 +37,8 @@ class AuthenticationController @Autowired constructor(
             UsernamePasswordAuthenticationToken(loginRequest.username, loginRequest.password)
         val authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken)
 
+        SecurityContextHolder.getContext().authentication = authentication
+
         val jwt = tokenProvider.generateToken(authentication.principal as DokapeUserDetails)
         return LoginResponse(jwt)
     }
@@ -42,7 +46,6 @@ class AuthenticationController @Autowired constructor(
     @PostMapping("/register")
     fun register(@Valid @RequestBody registerRequest: RegisterRequest): LoginResponse {
         if (userService.isUserRegistered(registerRequest.username)) {
-            println("GGGGGG")
             throw ResponseStatusException(HttpStatus.FORBIDDEN)
         }
         val user = with(registerRequest) {
@@ -53,7 +56,8 @@ class AuthenticationController @Autowired constructor(
                 lastName = lastName,
                 gender = Gender.from(gender),
                 dateOfBirth = LocalDate.parse(dateOfBirth),
-                email = email
+                email = email,
+                role = Roles.ROLE_USER
             )
         }
         userService.registerUser(user)
@@ -61,6 +65,7 @@ class AuthenticationController @Autowired constructor(
             UsernamePasswordAuthenticationToken(registerRequest.username, registerRequest.password)
         val authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken)
 
+        SecurityContextHolder.getContext().authentication = authentication
         val jwt = tokenProvider.generateToken(authentication.principal as DokapeUserDetails)
         return LoginResponse(jwt)
     }

@@ -14,4 +14,5 @@ class UserService @Autowired constructor(
     fun getUserById(id: Long): DBUser? = userRepository.findByIdOrNull(id)
     fun registerUser(user: DBUser) = userRepository.save(user)
     fun isUserRegistered(username: String) = userRepository.existsByUsername(username)
+    fun updateUser(user: DBUser) = userRepository.save(user)
 }

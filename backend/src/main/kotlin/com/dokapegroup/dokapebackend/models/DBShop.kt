@@ -1,5 +1,7 @@
 package com.dokapegroup.dokapebackend.models
 
+import com.dokapegroup.dokapebackend.models.abstract.BaseEntity
+import java.time.LocalDate
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -21,5 +23,7 @@ class DBShop(
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")
-    var user: DBUser
-)
+    var user: DBUser,
+    override var createdAt: LocalDate = LocalDate.now(),
+    override var updatedAt: LocalDate = LocalDate.now()
+) : BaseEntity()

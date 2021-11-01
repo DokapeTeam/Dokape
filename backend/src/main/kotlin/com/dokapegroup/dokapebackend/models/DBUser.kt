@@ -1,5 +1,6 @@
 package com.dokapegroup.dokapebackend.models
 
+import com.dokapegroup.dokapebackend.models.abstract.BaseEntity
 import java.time.LocalDate
 import javax.persistence.CascadeType
 import javax.persistence.Column
@@ -32,22 +33,24 @@ class DBUser(
     var firstName: String,
     var lastName: String,
     var avatar: String? = null,
+    var coverPhoto: String? = null,
     var latitude: Double? = null,
     var longitude: Double? = null,
     var gender: Gender = Gender.Other,
     var dateOfBirth: LocalDate,
     var email: String,
     var phone: String? = null,
-    var createdAt: LocalDate = LocalDate.now(),
-    var updatedAt: LocalDate = LocalDate.now(),
     var numberOfPosts: Int = 0,
     var numberOfShorts: Int = 0,
     var numberOfPetsAdopted: Int = 0,
     var trustedOwner: Boolean = false,
     @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL])
     @PrimaryKeyJoinColumn
-    var shop: DBShop? = null
-) {
+    var shop: DBShop? = null,
+    override var createdAt: LocalDate = LocalDate.now(),
+    override var updatedAt: LocalDate = LocalDate.now(),
+    var role: String
+) : BaseEntity() {
     companion object {
         const val TABLE_NAME = "dokape_user"
         private const val USER_SEQUENCE = "user_sequence"

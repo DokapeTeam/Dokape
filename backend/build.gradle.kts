@@ -32,6 +32,8 @@ dependencies {
     implementation("org.springframework.security:spring-security-oauth2-jose:5.5.3")
     implementation("org.springframework.security:spring-security-config:5.5.3")
     implementation("io.jsonwebtoken:jjwt:0.9.1")
+    implementation("org.springframework.boot:spring-boot-starter-parent:2.5.6")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf:2.5.6")
 }
 
 tasks.withType<KotlinCompile> {
