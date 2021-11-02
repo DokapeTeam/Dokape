@@ -45,11 +45,20 @@ object AndroidLibraries {
     const val KoinWorkManager = "io.insert-koin:koin-androidx-workmanager:${Versions.Koin}"
     const val KoinJetpackCompose = "io.insert-koin:koin-androidx-compose:${Versions.Koin}"
     const val KtorAndroid = "io.ktor:ktor-client-android:${Versions.Ktor}"
+
+    const val WorkManager = "androidx.work:work-runtime-ktx:${AndroidVersions.WorkManager}"
+    const val LifecycleRuntime = "androidx.lifecycle:lifecycle-runtime:${AndroidVersions.Lifecycle}"
+    const val LifecycleSaveState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${AndroidVersions.Lifecycle}"
+    const val LifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${AndroidVersions.Lifecycle}"
+    const val LifecycleLiveData = "androidx.lifecycle:lifecycle-livedata:${AndroidVersions.Lifecycle}"
+    const val LifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:${AndroidVersions.Lifecycle}"
 }
 
 object AndroidTestLibraries {
     const val ComposeUIJUnit4 =
         "androidx.compose.ui:ui-test-junit4:${AndroidVersions.ComposeVersion}"
+    const val AndroidTestEspresso = "androidx.test.espresso:espresso-core:3.3.0"
+    const val AndroidTestJUnit4 = "androidx.test.ext:junit:1.1.2"
 }
 
 object TestLibraries {
@@ -63,23 +72,4 @@ object AnnotationProcessor
 object IOSLibraries {
     const val SQLDelightNative = "com.squareup.sqldelight:native-driver:${Versions.SQLDelight}"
     const val KtorIOS = "io.ktor:ktor-client-ios:${Versions.Ktor}"
-}
-
-object BackendLibraries {
-    const val SpringBootStarter =
-        "org.springframework.boot:spring-boot-starter-data-jpa:${BackendVersions.SpringVersion}"
-    const val SpringBootStarterMustache =
-        "org.springframework.boot:spring-boot-starter-mustache:${BackendVersions.SpringVersion}"
-    const val SpringBootWeb =
-        "org.springframework.boot:spring-boot-starter-web:${BackendVersions.SpringVersion}"
-    const val SpringBootDevTools =
-        "org.springframework.boot:spring-boot-devtools:${BackendVersions.SpringVersion}"
-    const val SpringBootStarterParent =
-        "org.springframework.boot:spring-boot-starter-parent:${BackendVersions.SpringVersion}"
-    const val SpringBootTestStarter =
-        "org.springframework.boot:spring-boot-starter-test:${BackendVersions.SpringVersion}"
-    const val SpringFoxSwagger2 = "io.springfox:springfox-swagger2:${BackendVersions.SpringFox}"
-    const val SpringFoxBootStarter =
-        "io.springfox:springfox-boot-starter:${BackendVersions.SpringFox}"
-    const val SpringFoxSwaggerUi = "io.springfox:springfox-swagger-ui:${BackendVersions.SpringFox}"
 }

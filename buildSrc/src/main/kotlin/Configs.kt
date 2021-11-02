@@ -1,6 +1,6 @@
 object Configs {
-    const val GroupId = "com.dokapegroup"
-    const val ApplicationId = "com.dokapegroup.dokape"
+    const val GroupId = "com.dokapeteam"
+    const val ApplicationId = "com.dokapeteam.dokape"
     const val ApplicationName = "Dokape"
 }
 
