@@ -29,6 +29,10 @@ dependencies {
     //Firebase
     implementation(platform(AndroidLibraries.FirebaseBoM))
     implementation(AndroidLibraries.FirebaseAnalytics)
+    // Koin
+    implementation(AndroidLibraries.KoinAndroid)
+    implementation(AndroidLibraries.KoinWorkManager)
+    implementation(AndroidLibraries.KoinJetpackCompose)
 }
 
 android {

@@ -1,1 +1,1 @@
-./gradlew :backend:run
+./gradlew :backend:bootRun

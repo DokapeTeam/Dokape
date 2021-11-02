@@ -43,5 +43,5 @@ dependencies {
     implementation AndroidLibraries.CoroutinesAndroid
     testImplementation Libraries.CoroutinesTest
     implementation AndroidLibraries.Timber
-    testImplementation AndroidTestLibraries.jUnit4
+    testImplementation TestLibraries.jUnit4
 }
