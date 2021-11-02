@@ -11,5 +11,4 @@ rootProject.name = "Dokape"
 include(":android:androidApp")
 include(":shared")
 include(":desktop")
-include(":web")
 include(":android:network")
