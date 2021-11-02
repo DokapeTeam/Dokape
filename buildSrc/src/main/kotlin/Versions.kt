@@ -7,6 +7,7 @@ object Versions {
     const val Koin = "3.1.2"
     const val Kermit = "1.0.0-rc2"
     const val Ktor = "1.6.3"
+    const val GoggleService = "4.3.0"
 }
 
 object AndroidVersions {
@@ -22,6 +23,8 @@ object AndroidVersions {
     const val ActivityCompose = "1.4.0-alpha02"
 
     const val JUnit4 = "4.13"
+
+    const val FirebaseBoM = "28.4.1"
 }
 
 object IOSVersions

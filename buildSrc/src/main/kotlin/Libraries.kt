@@ -33,6 +33,11 @@ object AndroidLibraries {
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${AndroidVersions.CoroutinesAndroidVersion}"
     const val AndroidXCore = "androidx.core:core-ktx:${AndroidVersions.AndroidXCoreVersion}"
     const val Timber = "com.jakewharton.timber:timber:${AndroidVersions.TimberVersion}"
+
+    //Firebase
+    const val FirebaseBoM = "com.google.firebase:firebase-bom:${AndroidVersions.FirebaseBoM}"
+    const val FirebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
+
     const val ActivityCompose =
         "androidx.activity:activity-compose:${AndroidVersions.ActivityCompose}"
     const val SQLDelightAndroid = "com.squareup.sqldelight:android-driver:${Versions.SQLDelight}"

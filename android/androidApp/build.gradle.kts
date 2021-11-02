@@ -26,6 +26,9 @@ dependencies {
     // UI Tests
     androidTestImplementation(AndroidTestLibraries.ComposeUIJUnit4)
 
+    //Firebase
+    implementation(platform(AndroidLibraries.FirebaseBoM))
+    implementation(AndroidLibraries.FirebaseAnalytics)
     // Koin
     implementation(AndroidLibraries.KoinAndroid)
     implementation(AndroidLibraries.KoinWorkManager)
