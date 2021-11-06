@@ -30,7 +30,11 @@ kotlin {
     jvm()
     js(IR) {
         useCommonJs()
-        browser()
+        browser {
+            webpackTask {
+                output.libraryTarget = "commonjs2"
+            }
+        }
     }
 
     val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
