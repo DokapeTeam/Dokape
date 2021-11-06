@@ -10,6 +10,7 @@ buildscript {
         classpath(ProjectPlugins.KotlinGradlePlugin)
         classpath(ProjectPlugins.SQLDelightPlugin)
         classpath(ProjectPlugins.GoogleServicesPlugin)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
     }
 }
 

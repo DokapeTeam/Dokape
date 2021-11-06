@@ -2,6 +2,7 @@ plugins {
     id(AndroidPlugins.AndroidApplication)
     kotlin(AndroidPlugins.KotlinAndroid)
     kotlin(AndroidPlugins.KotlinKapt)
+    id("name.remal.check-dependency-updates") version "1.5.0"
 }
 
 group = Configs.GroupId
@@ -33,6 +34,7 @@ dependencies {
     implementation(AndroidLibraries.KoinAndroid)
     implementation(AndroidLibraries.KoinWorkManager)
     implementation(AndroidLibraries.KoinJetpackCompose)
+    implementation(AndroidLibraries.WorkManager)
 }
 
 android {

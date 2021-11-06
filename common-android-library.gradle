@@ -34,6 +34,10 @@ android {
         exclude("META-INF/AL2.0")
         exclude("META-INF/*.kotlin_module")
     }
+    
+    sourceSets.all {
+        kotlin.srcDir("src/$name/kotlin")
+    }
 }
 
 dependencies {
@@ -44,4 +48,14 @@ dependencies {
     testImplementation Libraries.CoroutinesTest
     implementation AndroidLibraries.Timber
     testImplementation TestLibraries.jUnit4
+    implementation AndroidLibraries.KoinAndroid
+    implementation AndroidLibraries.KoinWorkManager
+    implementation AndroidLibraries.WorkManager
+    implementation AndroidLibraries.LifecycleCommonJava8
+    implementation AndroidLibraries.LifecycleLiveData
+    implementation AndroidLibraries.LifecycleRuntime
+    implementation AndroidLibraries.LifecycleSaveState
+    implementation AndroidLibraries.LifecycleViewModel
+    androidTestImplementation AndroidTestLibraries.AndroidTestEspresso
+    androidTestImplementation AndroidTestLibraries.AndroidTestJUnit4
 }

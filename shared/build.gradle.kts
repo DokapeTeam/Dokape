@@ -27,15 +27,6 @@ kotlin {
     val isOSX =
         org.gradle.internal.os.OperatingSystem.current().isMacOsX
     android()
-    jvm()
-    js(IR) {
-        useCommonJs()
-        browser {
-            webpackTask {
-                output.libraryTarget = "commonjs2"
-            }
-        }
-    }
 
     val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
         System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
@@ -49,10 +40,10 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
-        podfile = project.file("../ios/Podfile")
+        podfile = project.file("../iosApp/Podfile")
 
         framework {
-            baseName = Modules.SharedModule
+            baseName = Modules.SharedModule.removePrefix(":")
         }
     }
 
@@ -118,18 +109,12 @@ kotlin {
             }
             val iosTest by getting
         }
-        val jsMain by getting {
-            dependencies {
-                implementation("com.squareup.sqldelight:sqljs-driver:${Versions.SQLDelight}")
-            }
-        }
     }
 
     targets.all {
         compilations.all {
             kotlinOptions {
-                allWarningsAsErrors = true
-                freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xjsr305=strict")
+                freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
             }
         }
     }
@@ -146,7 +131,7 @@ android {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
-    kotlinOptions.freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn", "-Xjsr305=strict")
+    kotlinOptions.freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
 }
 
 sqldelight {
