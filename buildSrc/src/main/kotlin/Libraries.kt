@@ -48,10 +48,25 @@ object AndroidLibraries {
 
     const val WorkManager = "androidx.work:work-runtime-ktx:${AndroidVersions.WorkManager}"
     const val LifecycleRuntime = "androidx.lifecycle:lifecycle-runtime:${AndroidVersions.Lifecycle}"
-    const val LifecycleSaveState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${AndroidVersions.Lifecycle}"
-    const val LifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${AndroidVersions.Lifecycle}"
-    const val LifecycleLiveData = "androidx.lifecycle:lifecycle-livedata:${AndroidVersions.Lifecycle}"
-    const val LifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:${AndroidVersions.Lifecycle}"
+    const val LifecycleSaveState =
+        "androidx.lifecycle:lifecycle-viewmodel-savedstate:${AndroidVersions.Lifecycle}"
+    const val LifecycleCommonJava8 =
+        "androidx.lifecycle:lifecycle-common-java8:${AndroidVersions.Lifecycle}"
+    const val LifecycleLiveData =
+        "androidx.lifecycle:lifecycle-livedata:${AndroidVersions.Lifecycle}"
+    const val LifecycleViewModel =
+        "androidx.lifecycle:lifecycle-viewmodel:${AndroidVersions.Lifecycle}"
+
+    const val NavigationFragment =
+        "androidx.navigation:navigation-fragment-ktx:${AndroidVersions.NavigationComponent}"
+    const val NavigationUi =
+        "androidx.navigation:navigation-ui-ktx:${AndroidVersions.NavigationComponent}"
+    const val NavigationDynamic =
+        "androidx.navigation:navigation-dynamic-features-fragment:${AndroidVersions.NavigationComponent}"
+    const val NavigationCompose =
+        "androidx.navigation:navigation-compose:${AndroidVersions.NavigationComponent}"
+
+    const val Coil = "io.coil-kt:coil:${AndroidVersions.Coil}"
 }
 
 object AndroidTestLibraries {
@@ -59,6 +74,9 @@ object AndroidTestLibraries {
         "androidx.compose.ui:ui-test-junit4:${AndroidVersions.ComposeVersion}"
     const val AndroidTestEspresso = "androidx.test.espresso:espresso-core:3.3.0"
     const val AndroidTestJUnit4 = "androidx.test.ext:junit:1.1.2"
+
+    const val NavigationTesting =
+        "androidx.navigation:navigation-testing:${AndroidVersions.NavigationComponent}"
 }
 
 object TestLibraries {

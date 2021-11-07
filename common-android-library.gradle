@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk AndroidConfigs.CompileSdkVersion
@@ -21,6 +22,11 @@ android {
         jvmTarget = '11'
     }
 
+
+    buildFeatures {
+        viewBinding true
+    }
+
     packagingOptions {
         exclude("META-INF/DEPENDENCIES")
         exclude("META-INF/LICENSE")
@@ -34,7 +40,7 @@ android {
         exclude("META-INF/AL2.0")
         exclude("META-INF/*.kotlin_module")
     }
-    
+
     sourceSets.all {
         kotlin.srcDir("src/$name/kotlin")
     }
@@ -58,4 +64,5 @@ dependencies {
     implementation AndroidLibraries.LifecycleViewModel
     androidTestImplementation AndroidTestLibraries.AndroidTestEspresso
     androidTestImplementation AndroidTestLibraries.AndroidTestJUnit4
+    implementation AndroidLibraries.Coil
 }
