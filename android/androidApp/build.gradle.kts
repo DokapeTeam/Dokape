@@ -9,6 +9,7 @@ group = Configs.GroupId
 
 dependencies {
     implementation(project(Modules.SharedModule))
+    implementation(project(AndroidModules.FeatureTutorial))
     implementation(AndroidLibraries.Material)
     implementation(AndroidLibraries.AppCompat)
     implementation(AndroidLibraries.ComposeUI)
@@ -35,6 +36,13 @@ dependencies {
     implementation(AndroidLibraries.KoinWorkManager)
     implementation(AndroidLibraries.KoinJetpackCompose)
     implementation(AndroidLibraries.WorkManager)
+    //Navigation
+    implementation(AndroidLibraries.NavigationFragment)
+    implementation(AndroidLibraries.NavigationCompose)
+    implementation(AndroidLibraries.NavigationDynamic)
+    implementation(AndroidLibraries.NavigationUi)
+    implementation(AndroidTestLibraries.NavigationTesting)
+
 }
 
 android {
@@ -60,6 +68,7 @@ android {
 
     buildFeatures {
         compose = true
+        viewBinding = true
     }
 
     compileOptions {

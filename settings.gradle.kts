@@ -10,9 +10,9 @@ pluginManagement {
 rootProject.name = "Dokape"
 include(":android:androidApp")
 include(":shared")
-include(":desktop")
 include(":android:features")
 include(":android:features:authentication")
 include(":android:features:home")
 include(":android:common")
 include(":android:features:shorts")
+include(":android:features:tutorial")

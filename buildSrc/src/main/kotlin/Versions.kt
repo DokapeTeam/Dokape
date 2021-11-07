@@ -14,7 +14,7 @@ object AndroidVersions {
     const val BuildToolsVersion = "31.0.0"
     const val AndroidGradlePluginVersion = "7.0.3"
 
-    const val MaterialVersion = "1.4.0"
+    const val MaterialVersion = "1.5.0-alpha05"
     const val AppCompat = "1.4.0-rc01"
     const val ComposeVersion = "1.1.0-beta01"
     const val CoroutinesAndroidVersion = "1.5.2"
@@ -27,6 +27,9 @@ object AndroidVersions {
     const val FirebaseBoM = "29.0.0"
     const val WorkManager = "2.7.0"
     const val Lifecycle = "2.4.0"
+    const val NavigationComponent = "2.4.0-beta02"
+
+    const val Coil = "1.4.0"
 }
 
 object IOSVersions
