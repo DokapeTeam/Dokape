@@ -5,13 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import kotlin.reflect.KClass
 
-abstract class BaseFragment<T : ViewBinding>() : Fragment() {
+abstract class BaseFragment<T : ViewBinding> : Fragment() {
     protected abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> T
     private var _binding: T? = null
     protected val binding get() = _binding!!
+
+    protected val backStackEntry get() = navController.currentBackStackEntry
+
+    protected val navController by lazy { findNavController() }
 
     override fun onCreateView(
         inflater: LayoutInflater,

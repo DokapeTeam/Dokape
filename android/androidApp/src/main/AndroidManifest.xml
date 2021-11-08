@@ -5,6 +5,7 @@
     <application
         android:allowBackup="false"
         android:supportsRtl="true"
+        android:name=".application.DokapeApplication"
         android:theme="@style/AppTheme">
         <activity
             android:name="com.dokapeteam.dokape.android.MainActivity"

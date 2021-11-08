@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tutorial_route" translatable="false">tutorial</string>
+    <string name="tutorial_welcome_route" translatable="false">tutorial-welcome</string>
+</resources>

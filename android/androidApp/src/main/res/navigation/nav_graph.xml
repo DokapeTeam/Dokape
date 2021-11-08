@@ -9,5 +9,11 @@
         android:id="@+id/navigation_welcome"
         android:name="com.dokapeteam.dokape.tutorial.welcome.WelcomeFragment"
         android:label="WelcomeFragment"
-        tools:layout="@layout/fragment_welcome" />
+        app:route="@string/tutorial_welcome_route"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_navigation_welcome_to_authentication_nav_graph2"
+            app:destination="@id/authentication_nav_graph" />
+    </fragment>
+    <include app:graph="@navigation/authentication_nav_graph" />
 </navigation>

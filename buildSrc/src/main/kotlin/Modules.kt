@@ -7,6 +7,7 @@ object AndroidModules {
     const val FeatureHome = ":android:features:home"
     const val Common = ":android:common"
     const val FeatureTutorial = ":android:features:tutorial"
+    const val Navigation = ":android:navigation"
 }
 
 object IOSModules {

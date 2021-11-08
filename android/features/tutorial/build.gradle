@@ -1,4 +1,12 @@
 apply from: "$rootDir/common-android-library.gradle"
+
 dependencies {
     api project(AndroidModules.Common)
+    implementation project(AndroidModules.Navigation)
+}
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
 }

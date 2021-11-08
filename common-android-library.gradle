@@ -47,11 +47,11 @@ android {
 
     buildFeatures {
         viewBinding true
-        dataBinding true
     }
 }
 
 dependencies {
+    implementation project(Modules.SharedModule)
     implementation AndroidLibraries.AndroidXCore
     implementation AndroidLibraries.AppCompat
     implementation Libraries.CoroutinesCore
@@ -67,6 +67,9 @@ dependencies {
     implementation AndroidLibraries.LifecycleRuntime
     implementation AndroidLibraries.LifecycleSaveState
     implementation AndroidLibraries.LifecycleViewModel
+    implementation AndroidLibraries.NavigationUi
+    implementation AndroidLibraries.NavigationDynamic
+    implementation AndroidLibraries.NavigationFragment
     androidTestImplementation AndroidTestLibraries.AndroidTestEspresso
     androidTestImplementation AndroidTestLibraries.AndroidTestJUnit4
     implementation AndroidLibraries.Coil

@@ -10,6 +10,8 @@ group = Configs.GroupId
 dependencies {
     implementation(project(Modules.SharedModule))
     implementation(project(AndroidModules.FeatureTutorial))
+    implementation(project(AndroidModules.FeatureAuthentication))
+    implementation(project(AndroidModules.FeatureHome))
     implementation(AndroidLibraries.Material)
     implementation(AndroidLibraries.AppCompat)
     implementation(AndroidLibraries.ComposeUI)
@@ -42,7 +44,6 @@ dependencies {
     implementation(AndroidLibraries.NavigationDynamic)
     implementation(AndroidLibraries.NavigationUi)
     implementation(AndroidTestLibraries.NavigationTesting)
-
 }
 
 android {

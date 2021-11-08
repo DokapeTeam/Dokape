@@ -47,15 +47,15 @@ object AndroidLibraries {
     const val KtorAndroid = "io.ktor:ktor-client-android:${Versions.Ktor}"
 
     const val WorkManager = "androidx.work:work-runtime-ktx:${AndroidVersions.WorkManager}"
-    const val LifecycleRuntime = "androidx.lifecycle:lifecycle-runtime:${AndroidVersions.Lifecycle}"
+    const val LifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${AndroidVersions.Lifecycle}"
     const val LifecycleSaveState =
         "androidx.lifecycle:lifecycle-viewmodel-savedstate:${AndroidVersions.Lifecycle}"
     const val LifecycleCommonJava8 =
         "androidx.lifecycle:lifecycle-common-java8:${AndroidVersions.Lifecycle}"
     const val LifecycleLiveData =
-        "androidx.lifecycle:lifecycle-livedata:${AndroidVersions.Lifecycle}"
+        "androidx.lifecycle:lifecycle-livedata-ktx:${AndroidVersions.Lifecycle}"
     const val LifecycleViewModel =
-        "androidx.lifecycle:lifecycle-viewmodel:${AndroidVersions.Lifecycle}"
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${AndroidVersions.Lifecycle}"
 
     const val NavigationFragment =
         "androidx.navigation:navigation-fragment-ktx:${AndroidVersions.NavigationComponent}"

@@ -21,4 +21,5 @@ dependencies {
     implementation(AndroidLibraries.ActivityCompose)
     androidTestImplementation(AndroidTestLibraries.ComposeUIJUnit4)
     implementation AndroidLibraries.KoinJetpackCompose
+    implementation AndroidLibraries.NavigationCompose
 }
