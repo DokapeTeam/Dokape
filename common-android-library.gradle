@@ -44,6 +44,11 @@ android {
     sourceSets.all {
         kotlin.srcDir("src/$name/kotlin")
     }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
 }
 
 dependencies {

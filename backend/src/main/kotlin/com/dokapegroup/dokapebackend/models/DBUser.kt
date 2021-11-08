@@ -2,12 +2,14 @@ package com.dokapegroup.dokapebackend.models
 
 import com.dokapegroup.dokapebackend.models.abstract.BaseEntity
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.OneToMany
 import javax.persistence.OneToOne
 import javax.persistence.PrimaryKeyJoinColumn
 import javax.persistence.SequenceGenerator
@@ -27,7 +29,7 @@ class DBUser(
         generator = USER_SEQUENCE
     )
     @Column(name = "id")
-    var id: Long? = null,
+    override var id: Long? = null,
     var username: String,
     var hashedPassword: String,
     var firstName: String,
@@ -47,9 +49,11 @@ class DBUser(
     @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL])
     @PrimaryKeyJoinColumn
     var shop: DBShop? = null,
-    override var createdAt: LocalDate = LocalDate.now(),
-    override var updatedAt: LocalDate = LocalDate.now(),
-    var role: String
+    override var createdAt: LocalDateTime = LocalDateTime.now(),
+    override var updatedAt: LocalDateTime = LocalDateTime.now(),
+    var role: String,
+    @OneToMany(mappedBy = "user")
+    var pets: MutableList<DBPet> = mutableListOf()
 ) : BaseEntity() {
     companion object {
         const val TABLE_NAME = "dokape_user"

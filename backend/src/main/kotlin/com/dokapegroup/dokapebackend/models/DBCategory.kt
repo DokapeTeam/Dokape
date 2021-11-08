@@ -1,11 +1,12 @@
 package com.dokapegroup.dokapebackend.models
 
 import com.dokapegroup.dokapebackend.models.abstract.BaseEntity
-import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
@@ -15,10 +16,12 @@ class DBCategory(
     @GeneratedValue(
         strategy = GenerationType.AUTO,
     )
-    var id: Long? = null,
+    override var id: Long? = null,
     var name: String?,
     var description: String?,
     var image: String,
-    override var createdAt: LocalDate = LocalDate.now(),
-    override var updatedAt: LocalDate = LocalDate.now()
+    @OneToMany(mappedBy = "category")
+    var subcategories: MutableList<DBSubcategory>,
+    override var createdAt: LocalDateTime = LocalDateTime.now(),
+    override var updatedAt: LocalDateTime = LocalDateTime.now(),
 ) : BaseEntity()

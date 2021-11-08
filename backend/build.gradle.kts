@@ -22,7 +22,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.31")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31")
     runtimeOnly("com.h2database:h2:1.4.200")
-    runtimeOnly("org.postgresql:postgresql:42.3.0")
+    runtimeOnly("org.postgresql:postgresql:42.3.1")
     implementation("org.springframework.boot:spring-boot-starter-web:2.5.6")
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.6")
     implementation("org.springframework.boot:spring-boot-starter-validation:2.5.6")
@@ -34,6 +34,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("org.springframework.boot:spring-boot-starter-parent:2.5.6")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:2.5.6")
+    compileOnly("org.projectlombok:lombok:1.18.22")
 }
 
 tasks.withType<KotlinCompile> {

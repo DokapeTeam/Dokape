@@ -1,9 +1,10 @@
 package com.dokapegroup.dokapebackend.models.abstract
 
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 abstract class BaseEntity {
-    abstract var createdAt: LocalDate
+    abstract val id: Long?
+    abstract var createdAt: LocalDateTime
 
-    abstract var updatedAt: LocalDate
+    abstract var updatedAt: LocalDateTime
 }
